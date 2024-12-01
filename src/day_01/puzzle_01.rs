@@ -21,13 +21,16 @@ pub fn lists_from(content: &str) -> (Vec<i32>, Vec<i32>) {
     return (left, right);
 }
 
-fn distances(mut left: Vec<i32>, mut right: Vec<i32>) -> Vec<i32> {
-    left.sort();
-    right.sort();
+fn distances(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
+    let mut left_sorted = left.clone();
+    left_sorted.sort();
 
-    let pairs = left
+    let mut right_sorted = right.clone();
+    right_sorted.sort();
+
+    let pairs = left_sorted
         .iter()
-        .zip(right.iter())
+        .zip(right_sorted.iter())
         .map(|i| (i.0 - i.1).abs())
         .collect();
 
