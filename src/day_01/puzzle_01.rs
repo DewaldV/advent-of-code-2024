@@ -1,20 +1,14 @@
-use std::{fs, path::Path};
+use crate::read_to_string;
 
 pub fn distance_from_file(file: &str) -> i32 {
-    let distances = distances_from_file(file);
+    let content = read_to_string(file);
+    let lists = lists_from(&content);
+    let distances = distances(lists.0, lists.1);
+
     return distances.iter().sum();
 }
 
-fn distances_from_file(file: &str) -> Vec<i32> {
-    let path = Path::new(&file);
-    let content = fs::read_to_string(path).expect("expected file to exist");
-
-    let distances = distances_from(&content);
-
-    return distances;
-}
-
-fn distances_from(content: &str) -> Vec<i32> {
+pub fn lists_from(content: &str) -> (Vec<i32>, Vec<i32>) {
     let mut left: Vec<i32> = vec![];
     let mut right: Vec<i32> = vec![];
 
@@ -24,7 +18,7 @@ fn distances_from(content: &str) -> Vec<i32> {
         right.push(line.1.parse().expect("number"));
     });
 
-    return distances(left, right);
+    return (left, right);
 }
 
 fn distances(mut left: Vec<i32>, mut right: Vec<i32>) -> Vec<i32> {
@@ -59,10 +53,10 @@ mod tests {
     #[test]
     fn pair_lists_from_file() {
         let example_input_file = "src/day_01/example_input_01";
-        let expected_distances: Vec<i32> = vec![2, 1, 0, 1, 2, 5];
+        let expected_distance = 11;
 
-        let distances = distances_from_file(example_input_file);
+        let distances = distance_from_file(example_input_file);
 
-        assert_eq!(distances, expected_distances);
+        assert_eq!(distances, expected_distance);
     }
 }

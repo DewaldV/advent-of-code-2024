@@ -1,4 +1,7 @@
 mod day_01;
+mod util;
+
+pub use self::util::read_to_string;
 
 fn main() {
     day01();

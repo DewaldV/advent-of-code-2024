@@ -1,25 +1,12 @@
-use std::{fs, path::Path};
+use super::puzzle_01::lists_from;
+use crate::read_to_string;
 
 pub fn similarity_score_from_file(file: &str) -> i32 {
-    let path = Path::new(&file);
-    let content = fs::read_to_string(path).expect("expected file to exist");
-
-    let score = score_from(&content);
+    let content = read_to_string(file);
+    let lists = lists_from(&content);
+    let score = similarity_score(lists.0, lists.1);
 
     return score;
-}
-
-fn score_from(content: &str) -> i32 {
-    let mut left: Vec<i32> = vec![];
-    let mut right: Vec<i32> = vec![];
-
-    content.lines().for_each(|l| {
-        let line = l.split_once("   ").expect("once");
-        left.push(line.0.parse().expect("number"));
-        right.push(line.1.parse().expect("number"));
-    });
-
-    return similarity_score(left, right);
 }
 
 fn similarity_score(left: Vec<i32>, right: Vec<i32>) -> i32 {
