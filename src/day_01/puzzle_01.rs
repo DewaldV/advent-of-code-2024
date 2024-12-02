@@ -9,8 +9,8 @@ pub fn solve(file: &str) -> i32 {
 }
 
 pub fn lists_from(content: &str) -> (Vec<i32>, Vec<i32>) {
-    let mut left: Vec<i32> = vec![];
-    let mut right: Vec<i32> = vec![];
+    let mut left: Vec<i32> = Vec::new();
+    let mut right: Vec<i32> = Vec::new();
 
     content.lines().for_each(|l| {
         let line = l.split_once("   ").expect("once");
