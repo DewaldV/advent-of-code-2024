@@ -1,7 +1,7 @@
 use super::puzzle_01::lists_from;
 use crate::read_to_string;
 
-pub fn similarity_score_from_file(file: &str) -> i32 {
+pub fn solve(file: &str) -> i32 {
     let content = read_to_string(file);
     let lists = lists_from(&content);
     let score = similarity_score(lists.0, lists.1);
@@ -28,7 +28,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn calc_similarity_score() {
+    fn solve_similarity_score() {
         let list_1: Vec<i32> = vec![3, 4, 2, 1, 3, 3];
         let list_2: Vec<i32> = vec![4, 3, 5, 3, 9, 3];
 

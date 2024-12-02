@@ -1,6 +1,6 @@
 use crate::read_to_string;
 
-pub fn distance_from_file(file: &str) -> i32 {
+pub fn solve(file: &str) -> i32 {
     let content = read_to_string(file);
     let lists = lists_from(&content);
     let distances = distances(lists.0, lists.1);
@@ -58,7 +58,7 @@ mod tests {
         let example_input_file = "src/day_01/example_input_01";
         let expected_distance = 11;
 
-        let distances = distance_from_file(example_input_file);
+        let distances = solve(example_input_file);
 
         assert_eq!(distances, expected_distance);
     }

@@ -7,14 +7,14 @@ pub fn run() {
 
     let file = "src/day_01/input_01";
 
-    let answer1 = puzzle_01::distance_from_file(file);
+    let answer1 = puzzle_01::solve(file);
 
-    println!("Sum of scores: {}", answer1);
+    println!("Puzzle 01: {}", answer1);
 
     let file = "src/day_01/input_01";
 
-    let answer2 = puzzle_02::similarity_score_from_file(file);
+    let answer2 = puzzle_02::solve(file);
 
-    println!("Sum of scores: {}", answer2);
+    println!("Puzzle 02: {}", answer2);
     println!("--------------");
 }

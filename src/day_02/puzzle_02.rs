@@ -2,7 +2,7 @@ use crate::read_to_string;
 
 use super::puzzle_01::{report_safe, reports_from};
 
-pub fn count_safe_reports(file: &str) -> i32 {
+pub fn solve(file: &str) -> i32 {
     let content = read_to_string(file);
     let reports = reports_from(&content);
     let safe_count = reports_safe(reports);
@@ -54,7 +54,7 @@ mod tests {
         let example_input_file = "src/day_02/example_input_01";
         let expected_safe_count = 4;
 
-        let safe_count = count_safe_reports(example_input_file);
+        let safe_count = solve(example_input_file);
 
         assert_eq!(safe_count, expected_safe_count);
     }
