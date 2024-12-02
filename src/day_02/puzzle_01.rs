@@ -40,17 +40,15 @@ pub fn report_safe(report: &Vec<i32>) -> bool {
         })
         .collect();
 
-    let first_level = diffs.first().expect("at least one level");
+    let first_diff = diffs.first().expect("at least one level");
 
-    let levels_safe = diffs
-        .iter()
-        .all(|d| levels_safe(first_level.is_positive(), d));
+    let levels_safe = diffs.iter().all(|d| diff_safe(first_diff.is_positive(), d));
 
     return levels_safe;
 }
 
-fn levels_safe(postive: bool, level: &i32) -> bool {
-    return level.is_positive() == postive && level.abs() >= 1 && level.abs() <= 3;
+fn diff_safe(postive: bool, diff: &i32) -> bool {
+    return diff.is_positive() == postive && diff.abs() >= 1 && diff.abs() <= 3;
 }
 
 #[cfg(test)]
