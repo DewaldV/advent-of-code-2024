@@ -19,5 +19,5 @@ cargo test
 
 Run solutions:
 ``` shellsession
-cargo test
+cargo run
 ```
