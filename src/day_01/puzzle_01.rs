@@ -18,19 +18,16 @@ pub fn lists_from(content: &str) -> (Vec<i32>, Vec<i32>) {
         right.push(line.1.parse().expect("number"));
     });
 
+    left.sort();
+    right.sort();
+
     return (left, right);
 }
 
 fn distances(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
-    let mut left_sorted = left.clone();
-    left_sorted.sort();
-
-    let mut right_sorted = right.clone();
-    right_sorted.sort();
-
-    let pairs = left_sorted
+    let pairs = left
         .iter()
-        .zip(right_sorted.iter())
+        .zip(right.iter())
         .map(|i| (i.0 - i.1).abs())
         .collect();
 
@@ -40,18 +37,6 @@ fn distances(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn pair_list_distances() {
-        let list_1: Vec<i32> = vec![3, 4, 2, 1, 3, 3];
-        let list_2: Vec<i32> = vec![4, 3, 5, 3, 9, 3];
-
-        let expected_distances: Vec<i32> = vec![2, 1, 0, 1, 2, 5];
-
-        let paired_lists = distances(list_1, list_2);
-
-        assert_eq!(paired_lists, expected_distances);
-    }
 
     #[test]
     fn pair_lists_from_file() {
