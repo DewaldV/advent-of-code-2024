@@ -8,22 +8,17 @@ pub fn solve(file: &str) -> i32 {
     return result;
 }
 
-pub fn multiply_line(line: &str) -> i32 {
-    let re = Regex::new(r"mul\([0-9]+,[0-9]+\)").expect("Invalid regex");
-    let matches: Vec<_> = re.find_iter(line).map(|m| m.as_str()).collect();
+fn multiply_line(line: &str) -> i32 {
+    let re = Regex::new(r"mul\(([0-9]+),([0-9]+)\)").expect("valid regex");
+    let result = re
+        .captures_iter(line)
+        .map(|cap| {
+            let x: i32 = cap[1].parse().unwrap();
+            let y: i32 = cap[2].parse().unwrap();
+            x * y
+        })
+        .sum();
 
-    let result = matches.iter().map(|m| multiply_instruction(m)).sum();
-
-    return result;
-}
-
-pub fn multiply_instruction(i: &str) -> i32 {
-    let args = i.split('(').last().unwrap().trim_end_matches(')');
-    let result: i32 = args
-        .split(',')
-        .map(|a| a.parse::<i32>().unwrap())
-        .reduce(|acc, e| acc * e)
-        .unwrap();
     return result;
 }
 
