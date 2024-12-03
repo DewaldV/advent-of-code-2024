@@ -15,17 +15,15 @@ pub fn multiply_line(line: &str) -> i32 {
     let mut instructions: Vec<&str> = Vec::new();
     let mut enabled = true;
 
-    for m in matches {
-        if enabled && m.starts_with("mul") {
-            instructions.push(m)
-        }
-
-        if m == "do()" {
-            enabled = true
-        }
-
-        if m == "don't()" {
-            enabled = false
+    for instruction in matches {
+        match instruction {
+            "do()" => enabled = true,
+            "don't()" => enabled = false,
+            _mul_expr => {
+                if enabled {
+                    instructions.push(instruction)
+                }
+            }
         }
     }
 

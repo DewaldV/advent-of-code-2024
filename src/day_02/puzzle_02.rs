@@ -11,28 +11,30 @@ pub fn solve(file: &str) -> i32 {
 fn reports_safe(reports: Vec<Vec<i32>>) -> i32 {
     let safe_count = reports
         .iter()
-        .map(|r| try_report_with_tolerance(r.to_vec()))
-        .filter(|r| *r)
+        .filter(|r| try_report_with_tolerance(r))
         .count();
 
     return safe_count.try_into().unwrap();
 }
 
-fn try_report_with_tolerance(report: Vec<i32>) -> bool {
+fn try_report_with_tolerance(report: &Vec<i32>) -> bool {
     let safe = report_safe(&report);
+    if safe {
+        return true;
+    }
 
-    if !safe {
-        for (idx, _) in report.iter().enumerate() {
-            let mut tolerated_report = report.clone();
-            tolerated_report.remove(idx);
-            let try_safe = report_safe(&tolerated_report);
-            if try_safe {
-                return try_safe;
-            }
+    for (idx, _) in report.iter().enumerate() {
+        let mut tolerated_report = report.clone();
+        tolerated_report.remove(idx);
+
+        let try_safe = report_safe(&tolerated_report);
+
+        if try_safe {
+            return true;
         }
     }
 
-    return safe;
+    false
 }
 
 #[cfg(test)]
@@ -43,7 +45,7 @@ mod tests {
     fn test_report_safe_with_tolerance() {
         let report: Vec<i32> = vec![7, 6, 4, 2, 1];
 
-        let safe = try_report_with_tolerance(report);
+        let safe = try_report_with_tolerance(&report);
 
         assert_eq!(safe, true)
     }

@@ -10,17 +10,13 @@ pub fn solve(file: &str) -> i32 {
 pub fn reports_from(content: &str) -> Vec<Vec<i32>> {
     let reports: Vec<Vec<i32>> = content
         .lines()
-        .map(|l| l.split(" ").map(|l| l.parse().unwrap()).collect())
+        .map(|l| l.split_whitespace().map(|l| l.parse().unwrap()).collect())
         .collect();
     return reports;
 }
 
 fn reports_safe(reports: Vec<Vec<i32>>) -> i32 {
-    let safe_count = reports
-        .iter()
-        .map(|r| report_safe(r))
-        .filter(|r| *r)
-        .count();
+    let safe_count = reports.iter().filter(|r| report_safe(r)).count();
 
     return safe_count.try_into().unwrap();
 }
@@ -33,10 +29,12 @@ pub fn report_safe(report: &Vec<i32>) -> bool {
         .iter()
         .filter_map(|level| {
             let inner = next_val.next();
+
             if let Some(inner) = inner {
                 return Some(level - inner);
             }
-            return None;
+
+            None
         })
         .collect();
 
