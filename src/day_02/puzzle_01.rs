@@ -22,19 +22,17 @@ fn reports_safe(reports: Vec<Vec<i32>>) -> i32 {
 }
 
 pub fn report_safe(report: &Vec<i32>) -> bool {
-    let mut next_val = report.iter();
-    next_val.next();
+    let mut next_level_it = report.iter();
+    next_level_it.next();
 
     let diffs: Vec<i32> = report
         .iter()
         .filter_map(|level| {
-            let inner = next_val.next();
-
-            if let Some(inner) = inner {
-                return Some(level - inner);
+            let next_level = next_level_it.next();
+            match next_level {
+                Some(next_level) => Some(level - next_level),
+                None => None,
             }
-
-            None
         })
         .collect();
 
