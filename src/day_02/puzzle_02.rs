@@ -1,6 +1,5 @@
-use crate::read_to_string;
-
 use super::puzzle_01::{report_safe, reports_from};
+use crate::read_to_string;
 
 pub fn solve(file: &str) -> i32 {
     let content = read_to_string(file);

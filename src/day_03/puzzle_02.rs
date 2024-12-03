@@ -1,10 +1,37 @@
+use super::puzzle_01::multiply_instruction;
 use crate::read_to_string;
+use regex::Regex;
 
 pub fn solve(file: &str) -> i32 {
-    let _content = read_to_string(file);
-    // let reports = reports_from(&content);
-    // let safe_count = reports_safe(reports);
-    return 0;
+    let content = read_to_string(file);
+    let result = multiply_line(&content);
+    return result;
+}
+
+pub fn multiply_line(line: &str) -> i32 {
+    let re = Regex::new(r"mul\([0-9]+,[0-9]+\)|do\(\)|don't\(\)").expect("Invalid regex");
+    let matches: Vec<_> = re.find_iter(line).map(|m| m.as_str()).collect();
+
+    let mut instructions: Vec<&str> = Vec::new();
+    let mut enabled = true;
+
+    for m in matches {
+        if enabled && m.starts_with("mul") {
+            instructions.push(m)
+        }
+
+        if m == "do()" {
+            enabled = true
+        }
+
+        if m == "don't()" {
+            enabled = false
+        }
+    }
+
+    let result = instructions.iter().map(|m| multiply_instruction(m)).sum();
+
+    return result;
 }
 
 #[cfg(test)]
@@ -12,16 +39,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_one_example() {
-        // let report: Vec<i32> = vec![7, 6, 4, 2, 1];
-        // let safe = report_safe(&report);
-        // assert_eq!(safe, true)
-    }
-
-    #[test]
     fn test_example_file() {
-        let example_input_file = "src/day_03/example_input_01";
-        let expected_answer = 0;
+        let example_input_file = "src/day_03/example_input_02";
+        let expected_answer = 48;
 
         let answer = solve(example_input_file);
 
