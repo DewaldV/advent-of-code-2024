@@ -18,10 +18,12 @@ pub fn solve(file: &str) -> i32 {
                 let bottom_left = letters[r + 1][c - 1];
                 let bottom_right = letters[r + 1][c + 1];
 
+                // Left Diagonal (\)
                 let mut left = String::new();
                 left.push(top_left);
                 left.push(bottom_right);
 
+                // Right Diagonal (/)
                 let mut right = String::new();
                 right.push(top_right);
                 right.push(bottom_left);

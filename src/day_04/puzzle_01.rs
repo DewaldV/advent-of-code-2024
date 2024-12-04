@@ -13,6 +13,7 @@ pub fn solve(file: &str) -> i32 {
 
     for (r, line) in letters.iter().enumerate() {
         for (c, ch) in line.iter().enumerate() {
+            // Veritical (|)
             if r == 0 {
                 vertical.insert(c, String::new())
             }
@@ -20,6 +21,7 @@ pub fn solve(file: &str) -> i32 {
             let l = vertical.get_mut(c).unwrap();
             l.push(ch.clone());
 
+            // Left Diagonals (\)
             let left_key = i32::try_from(r).unwrap() - i32::try_from(c).unwrap();
             if !left_diagonal.contains_key(&left_key) {
                 left_diagonal.insert(left_key, String::new());
@@ -28,6 +30,7 @@ pub fn solve(file: &str) -> i32 {
             let l = left_diagonal.get_mut(&left_key).unwrap();
             l.push(ch.clone());
 
+            // Right Diagonals (/)
             let right_key = r + c;
             if !right_diagonal.contains_key(&right_key) {
                 right_diagonal.insert(right_key, String::new());
