@@ -1,8 +1,5 @@
-use crate::read_to_string;
-
-pub fn solve(file: &str) -> i32 {
-    let content = read_to_string(file);
-    let reports = reports_from(&content);
+pub fn solve(content: &str) -> i32 {
+    let reports = reports_from(content);
     let safe_count = reports_safe(reports);
     return safe_count;
 }
@@ -49,6 +46,8 @@ fn diff_safe(postive: bool, diff: &i32) -> bool {
 
 #[cfg(test)]
 mod tests {
+    use crate::read_to_string;
+
     use super::*;
 
     #[test]
@@ -63,9 +62,10 @@ mod tests {
     #[test]
     fn test_example_reports_safe() {
         let example_input_file = "src/day_02/example_input_01";
+        let example_input = read_to_string(&example_input_file);
         let expected_safe_count = 2;
 
-        let safe_count = solve(example_input_file);
+        let safe_count = solve(&example_input);
 
         assert_eq!(safe_count, expected_safe_count);
     }

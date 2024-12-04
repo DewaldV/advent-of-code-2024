@@ -1,8 +1,5 @@
-use crate::read_to_string;
-
-pub fn solve(file: &str) -> i32 {
-    let content = read_to_string(file);
-    let lists = lists_from(&content);
+pub fn solve(content: &str) -> i32 {
+    let lists = lists_from(content);
     let distances = distances(lists.0, lists.1);
 
     return distances.iter().sum();
@@ -36,14 +33,17 @@ fn distances(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
 
 #[cfg(test)]
 mod tests {
+    use crate::read_to_string;
+
     use super::*;
 
     #[test]
     fn pair_lists_from_file() {
         let example_input_file = "src/day_01/example_input_01";
+        let example_input = read_to_string(&example_input_file);
         let expected_distance = 11;
 
-        let distances = solve(example_input_file);
+        let distances = solve(&example_input);
 
         assert_eq!(distances, expected_distance);
     }

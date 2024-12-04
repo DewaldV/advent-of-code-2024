@@ -1,8 +1,4 @@
-use crate::read_to_string;
-
-pub fn solve(file: &str) -> i32 {
-    let content = read_to_string(file);
-
+pub fn solve(content: &str) -> i32 {
     let mut count = 0;
 
     let letters: Vec<Vec<char>> = content.lines().map(|l| l.chars().collect()).collect();
@@ -40,14 +36,17 @@ pub fn solve(file: &str) -> i32 {
 
 #[cfg(test)]
 mod tests {
+    use crate::read_to_string;
+
     use super::*;
 
     #[test]
     fn test_example_file() {
         let example_input_file = "src/day_04/example_input_01";
+        let example_input = read_to_string(&example_input_file);
         let expected_answer = 9;
 
-        let answer = solve(example_input_file);
+        let answer = solve(&example_input);
 
         assert_eq!(answer, expected_answer);
     }

@@ -1,9 +1,7 @@
 use super::puzzle_01::lists_from;
-use crate::read_to_string;
 
-pub fn solve(file: &str) -> i32 {
-    let content = read_to_string(file);
-    let lists = lists_from(&content);
+pub fn solve(content: &str) -> i32 {
+    let lists = lists_from(content);
     let score = similarity_score(lists.0, lists.1);
 
     return score;

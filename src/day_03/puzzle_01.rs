@@ -1,10 +1,7 @@
 use regex::Regex;
 
-use crate::read_to_string;
-
-pub fn solve(file: &str) -> i32 {
-    let content = read_to_string(file);
-    let result = multiply_line(&content);
+pub fn solve(content: &str) -> i32 {
+    let result = multiply_line(content);
     return result;
 }
 
@@ -24,6 +21,8 @@ fn multiply_line(line: &str) -> i32 {
 
 #[cfg(test)]
 mod tests {
+    use crate::read_to_string;
+
     use super::*;
 
     #[test]
@@ -39,9 +38,10 @@ mod tests {
     #[test]
     fn test_example_file() {
         let example_input_file = "src/day_03/example_input_01";
+        let example_input = read_to_string(&example_input_file);
         let expected_answer = 161;
 
-        let answer = solve(example_input_file);
+        let answer = solve(&example_input);
 
         assert_eq!(answer, expected_answer);
     }
