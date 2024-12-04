@@ -24,3 +24,12 @@ pub fn run_day(day: u8, puzzle_01: &dyn Fn(&str) -> i32, puzzle_02: &dyn Fn(&str
 
     println!("--------------");
 }
+
+pub fn run_example_file(day: u8, expected_answer: i32, solve: &dyn Fn(&str) -> i32) {
+    let example_input_file = format!("src/day_{:02}/example_input_01", day);
+    let example_input = read_to_string(&example_input_file);
+
+    let answer = solve(&example_input);
+
+    assert_eq!(answer, expected_answer);
+}

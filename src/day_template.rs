@@ -4,5 +4,5 @@ pub mod puzzle_01;
 pub mod puzzle_02;
 
 pub fn run() {
-    run_day(3, &puzzle_01::solve, &puzzle_02::solve)
+    run_day(1, &puzzle_01::solve, &puzzle_02::solve)
 }

@@ -36,18 +36,12 @@ pub fn solve(content: &str) -> i32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::read_to_string;
+    use crate::util::run_example_file;
 
     use super::*;
 
     #[test]
     fn test_example_file() {
-        let example_input_file = "src/day_04/example_input_01";
-        let example_input = read_to_string(&example_input_file);
-        let expected_answer = 9;
-
-        let answer = solve(&example_input);
-
-        assert_eq!(answer, expected_answer);
+        run_example_file(4, 9, &solve);
     }
 }

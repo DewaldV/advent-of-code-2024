@@ -46,7 +46,7 @@ fn diff_safe(postive: bool, diff: &i32) -> bool {
 
 #[cfg(test)]
 mod tests {
-    use crate::read_to_string;
+    use crate::util::run_example_file;
 
     use super::*;
 
@@ -60,13 +60,7 @@ mod tests {
     }
 
     #[test]
-    fn test_example_reports_safe() {
-        let example_input_file = "src/day_02/example_input_01";
-        let example_input = read_to_string(&example_input_file);
-        let expected_safe_count = 2;
-
-        let safe_count = solve(&example_input);
-
-        assert_eq!(safe_count, expected_safe_count);
+    fn test_example_file() {
+        run_example_file(2, 2, &solve);
     }
 }

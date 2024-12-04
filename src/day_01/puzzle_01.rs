@@ -33,18 +33,12 @@ fn distances(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
 
 #[cfg(test)]
 mod tests {
-    use crate::read_to_string;
+    use crate::util::run_example_file;
 
     use super::*;
 
     #[test]
-    fn pair_lists_from_file() {
-        let example_input_file = "src/day_01/example_input_01";
-        let example_input = read_to_string(&example_input_file);
-        let expected_distance = 11;
-
-        let distances = solve(&example_input);
-
-        assert_eq!(distances, expected_distance);
+    fn test_example_file() {
+        run_example_file(1, 11, &solve);
     }
 }

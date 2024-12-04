@@ -36,7 +36,7 @@ fn multiply_line(line: &str) -> i32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::read_to_string;
+    use crate::util::read_to_string;
 
     use super::*;
 

@@ -23,6 +23,8 @@ fn similarity_score(left: Vec<i32>, right: Vec<i32>) -> i32 {
 
 #[cfg(test)]
 mod tests {
+    use crate::util::run_example_file;
+
     use super::*;
 
     #[test]
@@ -35,5 +37,10 @@ mod tests {
         let sim_score = similarity_score(list_1, list_2);
 
         assert_eq!(sim_score, expected_sim_score);
+    }
+
+    #[test]
+    fn test_example_file() {
+        run_example_file(1, 31, &solve);
     }
 }
