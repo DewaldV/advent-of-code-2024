@@ -3,6 +3,8 @@
 .env
 target
 
+input_01
+
 
 # Added by cargo
 #
