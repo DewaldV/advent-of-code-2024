@@ -7,7 +7,7 @@ enum Direction {
     WEST,
 }
 
-pub fn solve(content: &str) -> i32 {
+pub fn solve(content: &str) -> i128 {
     let map: Vec<Vec<char>> = content
         .lines()
         .map(|l| l.chars().collect::<Vec<char>>())

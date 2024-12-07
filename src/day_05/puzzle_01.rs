@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn solve(content: &str) -> i32 {
+pub fn solve(content: &str) -> i128 {
     let split_content = content
         .split_once("\n\n")
         .expect("one instance of double new line");
@@ -21,7 +21,7 @@ pub fn solve(content: &str) -> i32 {
         .map(|l| l.split(',').collect())
         .collect();
 
-    let middle_sum = updates
+    let middle_sum: i32 = updates
         .into_iter()
         .filter(|update| {
             update.is_sorted_by(|a, b| match rules.get(b) {
@@ -36,7 +36,7 @@ pub fn solve(content: &str) -> i32 {
         })
         .sum();
 
-    return middle_sum;
+    return middle_sum.into();
 }
 
 #[cfg(test)]

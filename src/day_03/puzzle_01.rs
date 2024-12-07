@@ -1,8 +1,8 @@
 use regex::Regex;
 
-pub fn solve(content: &str) -> i32 {
+pub fn solve(content: &str) -> i128 {
     let result = multiply_line(content);
-    return result;
+    return result.into();
 }
 
 fn multiply_line(line: &str) -> i32 {

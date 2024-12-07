@@ -1,8 +1,9 @@
-pub fn solve(content: &str) -> i32 {
+pub fn solve(content: &str) -> i128 {
     let lists = lists_from(content);
     let distances = distances(lists.0, lists.1);
 
-    return distances.iter().sum();
+    let sum: i32 = distances.iter().sum();
+    return sum.into();
 }
 
 pub fn lists_from(content: &str) -> (Vec<i32>, Vec<i32>) {

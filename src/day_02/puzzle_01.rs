@@ -1,7 +1,7 @@
-pub fn solve(content: &str) -> i32 {
+pub fn solve(content: &str) -> i128 {
     let reports = reports_from(content);
     let safe_count = reports_safe(reports);
-    return safe_count;
+    return safe_count.into();
 }
 
 pub fn reports_from(content: &str) -> Vec<Vec<i32>> {

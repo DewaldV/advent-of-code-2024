@@ -1,9 +1,9 @@
 use super::puzzle_01::{report_safe, reports_from};
 
-pub fn solve(content: &str) -> i32 {
+pub fn solve(content: &str) -> i128 {
     let reports = reports_from(content);
     let safe_count = reports_safe(reports);
-    return safe_count;
+    return safe_count.into();
 }
 
 fn reports_safe(reports: Vec<Vec<i32>>) -> i32 {

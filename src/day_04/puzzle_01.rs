@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn solve(content: &str) -> i32 {
+pub fn solve(content: &str) -> i128 {
     let letters: Vec<Vec<char>> = content.lines().map(|l| l.chars().collect()).collect();
 
     let mut vertical: Vec<String> = Vec::new();
