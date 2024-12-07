@@ -22,13 +22,11 @@ pub fn solve(content: &str) -> i32 {
         .collect();
 
     let middle_sum = updates
-        .iter()
+        .into_iter()
         .filter(|update| {
-            update.is_sorted_by(|a, b| {
-                if let Some(r) = rules.get(b) {
-                    return !r.contains(&a);
-                }
-                true
+            update.is_sorted_by(|a, b| match rules.get(b) {
+                Some(r) => !r.contains(&a),
+                None => true,
             })
         })
         .map(|update| {
@@ -46,11 +44,6 @@ mod tests {
     use crate::util::run_example_file;
 
     use super::*;
-
-    #[test]
-    fn test_one_example() {
-        assert_eq!(true, true);
-    }
 
     #[test]
     fn test_example_file() {
