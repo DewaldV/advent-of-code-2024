@@ -30,6 +30,10 @@ impl Pos {
 
 pub fn solve(content: &str) -> i128 {
     let map: Vec<Vec<char>> = content.lines().map(|l| l.chars().collect()).collect();
+    if map.is_empty() {
+        return 0;
+    }
+
     let mut antennae: HashMap<char, Vec<Pos>> = HashMap::new();
 
     let (max_r, max_c) = (map.len() as i32, map.first().unwrap().len() as i32);
